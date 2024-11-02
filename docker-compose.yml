@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # React Frontend
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.react
+    ports:
+      - "3000:3000"
+    depends_on:
+      - hardhat
+    networks:
+      - dev-network
+    volumes:
+      - ./react-app:/app           # Correct volume mapping
+      - /app/node_modules           # This keeps the node_modules in the container
+    environment:
+      - CHOKIDAR_USEPOLLING=true   # Enables live reloading on Docker for macOS/Windows
+
+  # Hardhat (Ethereum Development Node)
+  hardhat:
+    build:
+      context: .
+      dockerfile: Dockerfile.hardhat
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./blockchain:/app          # Make sure this folder is correct for your Hardhat
+      - /app/node_modules           # Avoid overwriting node_modules
+    command: ["npx", "hardhat", "node"]
+    networks:
+      - dev-network
+
+  # Ganache(Ethereum Blockchain)
+  ganache:
+    image: trufflesuite/ganache-cli
+    ports:
+      - "8546:8545"
+    command:
+      - "-h 0.0.0.0"
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+
+volumes:
+  pg-data:
