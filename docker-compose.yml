@@ -26,7 +26,7 @@ services:
     ports:
       - "8545:8545"
     volumes:
-      - ./blockchain:/app          # Make sure this folder is correct for your Hardhat project
+      - ./blockchain:/app          # Make sure this folder is correct for your Hardhat
       - /app/node_modules           # Avoid overwriting node_modules
     command: ["npx", "hardhat", "node"]
     networks:
