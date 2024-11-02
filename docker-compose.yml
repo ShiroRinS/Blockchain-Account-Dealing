@@ -32,7 +32,7 @@ services:
     networks:
       - dev-network
 
-  # Ganache (Ethereum Blockchain)
+  # Ganache(Ethereum Blockchain)
   ganache:
     image: trufflesuite/ganache-cli
     ports:
