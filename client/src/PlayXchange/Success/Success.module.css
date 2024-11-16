@@ -1,0 +1,84 @@
+/* Main container */
+.successContainer {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header navigation */
+  .header {
+    width: 100%;
+    background: #1e013a;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .navItem {
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .navTitle {
+    color: #ff00ff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Success card */
+  .successCard {
+    background: linear-gradient(to bottom, #1e013a, #000000);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+    color: #00ff00; /* Neon green for success */
+    margin-bottom: 10px;
+  }
+  
+  .message {
+    font-size: 1rem;
+    color: #cccccc;
+    margin-bottom: 20px;
+  }
+  
+  /* Home button */
+  .homeButton {
+    background-color: #00ff00; /* Neon green */
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .homeButton:hover {
+    transform: scale(1.05);
+    background-color: #00cc00; /* Slightly darker green */
+  }
+  

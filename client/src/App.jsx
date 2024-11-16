@@ -18,6 +18,9 @@ import GameList from "./PlayXchange/GameList/GameList.jsx";
 import IdDetails from './PlayXchange/IdDetails/IdDetails.jsx';
 import CreatePost from "./PlayXchange/CreatePost/CreatePost.jsx";
 import AccountSecret from './PlayXchange/AccountSecret/AccountSecret.jsx';
+import Confirmation from './PlayXchange/Confirmation/Confirmation.jsx';
+import Success from './PlayXchange/Success/Success.jsx';
+
   // PlayXchange Frontend components
 //import Navbar from "./components/Footer";
 //import Footer from "./components/Footer";
@@ -33,9 +36,10 @@ function App() {
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/id-details" element={<IdDetails />} />
             <Route path="/account-secret" element={<AccountSecret />} />
+            <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/success" element={<Success />} />
         </Routes>
       </Router>
-    
     </EthProvider>
   );
 }
