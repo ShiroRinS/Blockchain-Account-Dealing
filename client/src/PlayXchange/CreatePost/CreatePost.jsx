@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import styles from './CreatePost.module.css'; // Import CSS module
 
 const CreatePost = () => {
+  const navigate = useNavigate(); // Initialize navigate function
   const [formData, setFormData] = useState({
     id: '',
     streamApi: '',
@@ -11,16 +13,14 @@ const CreatePost = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    // Add functionality to process the form data (e.g., send it to an API)
+    // Add your logic to handle form data if needed
+    navigate('/account-secret'); // Navigate to AccountSecret page
   };
 
   return (
@@ -37,6 +37,7 @@ const CreatePost = () => {
             onChange={handleChange}
             className={styles.input}
             placeholder="Enter ID"
+            required
           />
         </div>
         <div className={styles.formGroup}>
@@ -49,10 +50,8 @@ const CreatePost = () => {
             onChange={handleChange}
             className={styles.input}
             placeholder="Enter Stream API"
+            required
           />
-          <p className={styles.apiLink}>
-            Link API: <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener noreferrer">https://steamcommunity.com/dev/apikey</a>
-          </p>
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="detail" className={styles.label}>DETAIL</label>
@@ -63,6 +62,7 @@ const CreatePost = () => {
             onChange={handleChange}
             className={styles.textarea}
             placeholder="Enter details"
+            required
           />
         </div>
         <div className={styles.formGroup}>
@@ -75,6 +75,7 @@ const CreatePost = () => {
             onChange={handleChange}
             className={styles.input}
             placeholder="Enter price"
+            required
           />
         </div>
         <button type="submit" className={styles.submitButton}>NEXT</button>

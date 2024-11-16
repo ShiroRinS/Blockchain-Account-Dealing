@@ -74,15 +74,13 @@
     text-decoration: underline;
   }
   
-  /* Submit button */
   .submitButton {
-    width: 100%;
-    padding: 10px;
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
-    color: white;
-    background-color: #ff00ff;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
@@ -93,4 +91,5 @@
     transform: scale(1.05);
     background-color: #e600e6; /* Slightly darker neon pink */
   }
+  
   
