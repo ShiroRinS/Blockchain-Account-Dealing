@@ -1,5 +1,10 @@
+// ETH
 import { EthProvider } from "./contexts/EthContext";
-/* Truffle Box 
+// React-Routing-DOM
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Truffle Box
+/*
 import Intro from "./components/Intro/";
 import Setup from "./components/Setup";
 import Demo from "./components/Demo";
@@ -9,20 +14,26 @@ import Footer from "./components/Footer";
 //// PlayXchange ////
   // PlayXchange Frontend pages
 import Home from "./PlayXchange/Home/Home.jsx";
-//import GameList from "./components/Footer";
+import GameList from "./PlayXchange/GameList/GameList.jsx";
 //import IdDetails from "./components/Footer";
 //import CreatePost from "./components/Footer";
 //import UserAuth from "./components/Footer";
 
   // PlayXchange Frontend components
 //import Navbar from "./components/Footer";
-import Footer from "./components/Footer";
+//import Footer from "./components/Footer";
 
 
 function App() {
   return (
     <EthProvider>
-      <Home />
+      <Router>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/game-list" element={<GameList />} />
+        </Routes>
+      </Router>
+    
     </EthProvider>
   );
 }
