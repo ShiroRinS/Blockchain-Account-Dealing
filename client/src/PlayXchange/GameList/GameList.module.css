@@ -1,12 +1,13 @@
-/* Container for the game list page */
+/* General container for the GameList page */
 .gameListContainer {
     padding: 20px;
-    background-color: black; /* Dark theme */
+    background-color: black;
     color: white;
     min-height: 100vh;
+    position: relative; /* To position the floating button */
   }
   
-  /* Page title */
+  /* Title styling */
   .title {
     font-size: 2.5rem;
     text-align: center;
@@ -15,15 +16,14 @@
     margin-bottom: 20px;
   }
   
-  /* Wrapper for all game cards */
+  /* Game card styling */
   .games {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 20px;
+    justify-content: center;
   }
   
-  /* Individual game card */
   .gameCard {
     background-color: #1e013a;
     border-radius: 10px;
@@ -37,36 +37,30 @@
     transform: scale(1.05);
   }
   
-  /* Game name */
   .gameName {
     font-size: 1.5rem;
     color: #ff00ff;
     margin-bottom: 10px;
   }
   
-  /* Game description */
   .description {
     font-size: 1rem;
     color: white;
     margin-bottom: 10px;
   }
   
-  /* Game price */
   .price {
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 15px;
     color: #e6e600; /* Neon yellow */
+    margin-bottom: 10px;
   }
   
-  /* Buy button */
   .buyButton {
     background-color: #ff00ff;
     color: white;
-    border: none;
     padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
@@ -75,6 +69,29 @@
   
   .buyButton:hover {
     transform: scale(1.1);
-    background-color: #e600e6; /* Darker neon pink */
+    background-color: #e600e6;
+  }
+  
+  /* Floating "+" button */
+  .createPostButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff00ff;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .createPostButton:hover {
+    transform: scale(1.1);
+    background-color: #e600e6; /* Slightly darker neon pink */
   }
   
