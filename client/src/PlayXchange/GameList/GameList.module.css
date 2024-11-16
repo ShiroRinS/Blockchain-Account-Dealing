@@ -1,0 +1,80 @@
+/* Container for the game list page */
+.gameListContainer {
+    padding: 20px;
+    background-color: black; /* Dark theme */
+    color: white;
+    min-height: 100vh;
+  }
+  
+  /* Page title */
+  .title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #ff00ff; /* Neon pink */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    margin-bottom: 20px;
+  }
+  
+  /* Wrapper for all game cards */
+  .games {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Individual game card */
+  .gameCard {
+    background-color: #1e013a;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .gameCard:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Game name */
+  .gameName {
+    font-size: 1.5rem;
+    color: #ff00ff;
+    margin-bottom: 10px;
+  }
+  
+  /* Game description */
+  .description {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  /* Game price */
+  .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #e6e600; /* Neon yellow */
+  }
+  
+  /* Buy button */
+  .buyButton {
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .buyButton:hover {
+    transform: scale(1.1);
+    background-color: #e600e6; /* Darker neon pink */
+  }
+  
