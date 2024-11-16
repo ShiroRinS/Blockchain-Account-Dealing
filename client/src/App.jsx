@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import Home from "./PlayXchange/Home/Home.jsx";
 import GameList from "./PlayXchange/GameList/GameList.jsx";
 //import IdDetails from "./components/Footer";
-//import CreatePost from "./components/Footer";
+import CreatePost from "./PlayXchange/CreatePost/CreatePost.jsx";
 //import UserAuth from "./components/Footer";
 
   // PlayXchange Frontend components
@@ -31,6 +31,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/game-list" element={<GameList />} />
+            <Route path="/create-post" element={<CreatePost />} />
         </Routes>
       </Router>
     
