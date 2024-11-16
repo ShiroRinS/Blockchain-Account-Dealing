@@ -1,4 +1,5 @@
 # Blockchain-Account-Dealing
+Using blockchain as a middleman for account transfers enables secure, transparent, and decentralized transactions without relying on traditional intermediaries.
 
 ## Overview
 

@@ -1,0 +1,38 @@
+/* General container for the home page */
+.homeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    background: radial-gradient(circle, #1e013a, #000000); /* Neon gradient */
+}
+  
+/* Neon title styling */
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff00ff; /* Neon pink */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+/* Enter button styling */
+.enterButton {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+    transition: transform 0.2s ease-in-out;
+}
+
+.enterButton:hover {
+    transform: scale(1.1);
+    background-color: #e600e6; /* Slightly darker neon pink */
+}

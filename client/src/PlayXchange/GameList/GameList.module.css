@@ -1,0 +1,97 @@
+/* General container for the GameList page */
+.gameListContainer {
+    padding: 20px;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    position: relative; /* To position the floating button */
+  }
+  
+  /* Title styling */
+  .title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #ff00ff; /* Neon pink */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    margin-bottom: 20px;
+  }
+  
+  /* Game card styling */
+  .games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .gameCard {
+    background-color: #1e013a;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .gameCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .gameName {
+    font-size: 1.5rem;
+    color: #ff00ff;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e6e600; /* Neon yellow */
+    margin-bottom: 10px;
+  }
+  
+  .buyButton {
+    background-color: #ff00ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .buyButton:hover {
+    transform: scale(1.1);
+    background-color: #e600e6;
+  }
+  
+  /* Floating "+" button */
+  .createPostButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff00ff;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .createPostButton:hover {
+    transform: scale(1.1);
+    background-color: #e600e6; /* Slightly darker neon pink */
+  }
+  
