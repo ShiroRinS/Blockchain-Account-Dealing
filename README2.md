@@ -10,13 +10,9 @@ Run the `unbox` command using 1 of 2 ways.
 
 ```sh
 # Install Truffle globally and run `truffle unbox`
-$ npm install -g truffle
-$ truffle unbox react
-```
+$ npm install -g truffle  
+$ npm install --save-dev webpack-dev-server
 
-```sh
-# Alternatively, run `truffle unbox` via npx
-$ npx truffle unbox react
 ```
 
 Start the react dev server.
