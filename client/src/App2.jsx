@@ -5,7 +5,7 @@ import tradeKeyAbi from "./TradeKeyABI.json"; // Import your contract ABI here
 // Replace with your deployed contract address
 const contractAddress = "0x310F46F13f3D4f183b5D94D5508348625F22f9f3";
 
-const App = () => {
+const App2 = () => {
   const [account, setAccount] = useState(null);
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
@@ -14,39 +14,37 @@ const App = () => {
   const [itemId, setItemId] = useState("");
   const [allItems, setAllItems] = useState([]);
 
-  // Load Web3 and contract, and set up account connection
-  useEffect(() => {
-    const loadWeb3AndContract = async () => {
-      // Check if MetaMask is installed
-      if (window.ethereum) {
+  // Function to connect wallet
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      try {
         const web3Instance = new Web3(window.ethereum);
         setWeb3(web3Instance);
 
-        try {
-          // Requesting the accounts
-          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-          setAccount(accounts[0]);
+        // Request accounts from MetaMask
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        setAccount(accounts[0]);
 
-          // Initialize the contract instance
-          const contractInstance = new web3Instance.eth.Contract(tradeKeyAbi, contractAddress);
-          setContract(contractInstance);
-        } catch (error) {
-          console.error("Error fetching accounts", error);
-          alert("Please connect your MetaMask wallet.");
-        }
-      } else {
-        alert("Please install MetaMask!");
+        // Initialize the contract instance
+        const contractInstance = new web3Instance.eth.Contract(tradeKeyAbi, contractAddress);
+        setContract(contractInstance);
+
+        alert(`Wallet connected: ${accounts[0]}`);
+      } catch (error) {
+        console.error("Error connecting wallet:", error);
+        alert("Failed to connect wallet. Please try again.");
       }
-    };
+    } else {
+      alert("MetaMask is not installed. Please install it to use this app.");
+    }
+  };
 
-    loadWeb3AndContract();
-  }, []);
-
-  // Handle account switch (called when MetaMask account changes)
+  // Handle account switching
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts) => {
-        setAccount(accounts[0]); // Update the account state when the user switches the wallet
+        setAccount(accounts[0]); // Update account when user switches wallets
+        alert(`Account changed to: ${accounts[0]}`);
       });
     }
   }, []);
@@ -108,8 +106,18 @@ const App = () => {
 
   return (
     <div className="App">
+      {/* Connect Wallet Button */}
+      <div>
+        {!account ? (
+          <button onClick={connectWallet}>Connect Wallet</button>
+        ) : (
+          <p>Connected Wallet: {account}</p>
+        )}
+      </div>
+
       <h1>Smart Marketplace</h1>
 
+      {/* Set Price and Value Section */}
       <div>
         <h3>Set Price and Value</h3>
         <input
@@ -127,6 +135,7 @@ const App = () => {
         <button onClick={handleSetPriceAndValue}>Set Price and Value</button>
       </div>
 
+      {/* Purchase Section */}
       <div>
         <h3>Purchase Key</h3>
         <input
@@ -138,6 +147,7 @@ const App = () => {
         <button onClick={handlePurchase}>Purchase</button>
       </div>
 
+      {/* All Items Section */}
       <div>
         <h3>All Item Details</h3>
         <button onClick={handleGetAllItems}>Get All Items</button>
@@ -166,14 +176,8 @@ const App = () => {
           </tbody>
         </table>
       </div>
-
-      {/* Button to show current wallet */}
-      <div>
-        <h3>Current Wallet</h3>
-        <button onClick={() => alert(`Current wallet address: ${account}`)}>Show Current Wallet</button>
-      </div>
     </div>
   );
 };
 
-export default App;
+export default App2;
