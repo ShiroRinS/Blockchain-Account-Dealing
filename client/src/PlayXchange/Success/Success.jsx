@@ -11,22 +11,11 @@ const Success = () => {
 
   return (
     <div className={styles.successContainer}>
-      {/* Header */}
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <span className={styles.navItem} onClick={() => navigate('/game-list')}>
-            Game list
-          </span>
-          <span className={styles.navTitle}>PlayXChange</span>
-          <span className={styles.navItem}>id metamask</span>
-        </nav>
-      </header>
-
       {/* Success Message */}
       <div className={styles.successCard}>
-        <h1 className={styles.title}>Transaction Successful!</h1>
+        <h1 className={styles.title}>Listing Successful!</h1>
         <p className={styles.message}>
-          Your transaction has been completed successfully. Thank you for using PlayXChange!
+          Your listing has been posted on the PlayXChange market, fortune favors you!!
         </p>
         <button className={styles.homeButton} onClick={handleGoToHome}>
           Back to Game List
