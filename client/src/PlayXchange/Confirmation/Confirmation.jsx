@@ -22,7 +22,7 @@ const Confirmation = () => {
 
   const priceforsubmit = formData.price ? parseFloat(formData.price) : null;
   const mergedData = { ...credentials, ...restOfformData };
-  const value = mergedData;
+  const value = JSON.stringify(mergedData);
 
   const navigate = useNavigate();
 
