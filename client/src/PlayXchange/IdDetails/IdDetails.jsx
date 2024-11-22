@@ -31,7 +31,7 @@ const IdDetails = () => {
 
   return (
     <div className={styles.idDetailsContainer}>
-      {/* Header */}
+      {/* Header Prototype Navbar (Paused for New Navbar that has Meta Mask)
       <header className={styles.header}>
         <nav className={styles.nav}>
           <span className={styles.navItem} onClick={() => window.history.back()}>
@@ -41,7 +41,7 @@ const IdDetails = () => {
           <span className={styles.navItem}>id metamask</span>
         </nav>
       </header>
-
+      */}
       {/* Game Details */}
       <div className={styles.detailsCard}>
         <h1 className={styles.gameName}>{gameDetails.name || 'Unknown Game'}</h1>

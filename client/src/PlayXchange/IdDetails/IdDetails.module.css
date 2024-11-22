@@ -1,130 +1,121 @@
 /* Main container */
 .idDetailsContainer {
-    background-color: black;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Header navigation */
-  .header {
-    width: 100%;
-    background: #1e013a;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .navItem {
-    color: #ffffff;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .navTitle {
-    color: #ff00ff;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  /* Details card */
-  .detailsCard {
-    background: linear-gradient(to bottom, #1e013a, #000000);
-    border-radius: 10px;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    margin: 20px 0;
-    text-align: center;
-  }
-  
-  .gameName {
-    font-size: 2rem;
-    color: #ff00ff;
-    margin-bottom: 10px;
-  }
-  
-  .description {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    color: #cccccc;
-  }
-  
-  .sellBy {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #e6e600;
-  }
-  
-  .buyButton {
-    background-color: #ff00ff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .buyButton:hover {
-    transform: scale(1.05);
-    background-color: #e600e6;
-  }
-  
-  /* Game list */
-  .gameList {
-    background: linear-gradient(to bottom, #1e013a, #000000);
-    border-radius: 10px;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    margin: 20px 0;
-  }
-  
-  .gameListTitle {
-    font-size: 1.5rem;
-    color: #ff00ff;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .listItem {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: #cccccc;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .appId {
-    color: #e6e600; /* Neon yellow */
-  }
-  
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px; /* Increased padding for spaciousness */
+  font-family: Arial, sans-serif;
+}
+
+/* Header navigation */
+.header {
+  width: 100%;
+  background: #1e013a;
+  padding: 15px 30px; /* Increased padding for a larger header */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.navTitle {
+  color: #ff00ff;
+  font-size: 2rem; /* Increased font size */
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Details card */
+.detailsCard {
+  background: linear-gradient(to bottom, #1e013a, #000000);
+  border-radius: 15px; /* Larger corner radius */
+  padding: 30px; /* Increased padding for content */
+  width: 90%; /* Increased width for larger layout */
+  max-width: 900px; /* Adjusted max width for responsiveness */
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; /* Enhanced shadow */
+  margin: 30px 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.gameName {
+  font-size: 2.5rem; /* Larger game name font size */
+  color: #ff00ff;
+  margin-bottom: 20px; /* Increased spacing below */
+}
+
+.description {
+  font-size: 1.5rem; /* Larger description font size */
+  margin-bottom: 20px; /* Increased margin for better spacing */
+  color: #cccccc;
+  line-height: 1.8; /* Improved readability */
+}
+
+.sellBy {
+  font-size: 1.8rem; /* Larger sell-by font size */
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 2rem; /* Larger price font size */
+  font-weight: bold;
+  color: #e6e600;
+  margin-bottom: 30px; /* Added spacing below */
+}
+
+.buyButton {
+  background-color: #ff00ff;
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Larger padding for a bigger button */
+  font-size: 1.5rem; /* Increased font size */
+  font-weight: bold;
+  border-radius: 10px; /* Larger corner radius */
+  cursor: pointer;
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; /* Enhanced shadow */
+  transition: transform 0.2s ease-in-out;
+}
+
+.buyButton:hover {
+  transform: scale(1.1); /* Larger hover effect */
+  background-color: #e600e6;
+}
+
+/* Game list */
+.gameList {
+  background: linear-gradient(to bottom, #1e013a, #000000);
+  border-radius: 15px; /* Larger corner radius */
+  padding: 30px; /* Increased padding for content */
+  width: 90%; /* Increased width for larger layout */
+  max-width: 900px; /* Adjusted max width */
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; /* Enhanced shadow */
+  margin: 30px 0;
+}
+
+.gameListTitle {
+  font-size: 2rem; /* Increased font size for the title */
+  color: #ff00ff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  margin: 10px 0; /* Increased spacing between list items */
+  font-size: 1.5rem; /* Larger font size for list items */
+  color: #cccccc;
+  display: flex;
+  justify-content: space-between;
+}
+
+.appId {
+  color: #e6e600; /* Neon yellow */
+}
