@@ -7,8 +7,61 @@
     flex-direction: column;
     text-align: center;
     background: radial-gradient(circle, #1e013a, #000000); /* Neon gradient */
-    position: relative; /* Enable stacking layers */
+    position: relative;
     overflow: hidden;
+}
+
+/* Full-page loader */
+.fullPageLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Dark background with slight transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999; /* Ensure it covers everything */
+    color: white;
+    opacity: 1; /* Initial opacity */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-out effect */
+}
+
+/* Fade-out class */
+.fadeOut {
+    opacity: 0; /* Fully transparent */
+    pointer-events: none; /* Prevent interaction during fade-out */
+}
+
+/* Spinner inside the loader */
+.spinner {
+    border: 6px solid rgba(255, 255, 255, 0.3); /* Light outer border */
+    border-top: 6px solid #ff00ff; /* Neon pink spinning border */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+/* Loader text */
+.loaderText {
+    font-size: 1.2rem;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Spline container */
@@ -20,28 +73,25 @@
     height: 100%;
     z-index: 1; /* Send Spline to the back */
     pointer-events: none; /* Allow clicks to pass through */
+    transition: opacity 0.5s ease-in-out; /* Smoothly fade in the iframe */
 }
 
-/* Spline iframe styling */
-.splineFrame {
+.splineEmbed {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    border: none;
-}
-
-/* Neon title styling */
-.title {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ff00ff; /* Neon pink */
-    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-    z-index: 2; /* Keep the text above Spline */
-    position: relative;
 }
 
 /* Enter button styling */
 .enterButton {
+    position: fixed;
+    bottom: 20px; /* Position the button at the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
     margin-top: 20px;
+    margin-bottom: 80px;
     padding: 15px 30px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -51,12 +101,40 @@
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-    transition: transform 0.2s ease-in-out;
-    z-index: 2; /* Keep the button above Spline */
-    position: relative;
+    opacity: 0; /* Initially invisible */
+    transition: opacity 1s ease-in-out; /* Smooth fade-in */
+    z-index: 10; /* Keep the button above other elements */
 }
 
+/* Fade-in animation */
+.fadeInButton {
+    opacity: 1; /* Fully visible */
+}
+
+/* Enter button hover effect */
 .enterButton:hover {
-    transform: scale(1.1);
+    transform: translateX(-50%) scale(1.1); /* Slight scale effect */
     background-color: #e600e6; /* Slightly darker neon pink */
+}
+
+
+/* Neon title styling */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap'); /* Importing Orbitron Font */
+
+.title {
+    font-size: 1900%; /* Very large font size */
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif; /* Gaming-style font */
+    color: #f8f8f8; /* Neon pink */
+    text-shadow: 
+        0 0 5px #ff00ff, /* Inner glow */
+        0 0 10px #ff00ff, 
+        0 0 20px #ff00ff, 
+        0 0 40px #ff00ff, 
+        0 0 80px #ff00ff; /* Outer glow for a stronger neon effect */
+    z-index: 0; /* Keeps the text above other elements */
+    position: relative;
+    text-transform: uppercase; /* Converts the text to uppercase */
+    letter-spacing: 0.1em; /* Adds a futuristic spacing effect */
+    margin-bottom: 4rem;
 }
