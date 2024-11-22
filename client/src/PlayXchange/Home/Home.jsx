@@ -11,6 +11,17 @@ const Home = () => {
 
   return (
     <div className={styles.homeContainer}>
+      {/* Embed the Spline project */}
+      <div className={styles.splineContainer}>
+        <iframe
+          src="https://my.spline.design/cardpasscopy-86d385d58aaec9040cb7d1480781dd5c/"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+          className={styles.splineFrame}
+          title="Spline Project"
+        ></iframe>
+      </div>
       <div className={styles.banner}>
         <h1 className={styles.title}>Stream Zone Unlocked</h1>
         <button className={styles.enterButton} onClick={handleEnterZone}>
