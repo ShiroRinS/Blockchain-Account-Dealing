@@ -18,7 +18,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9); /* Dark background with slight transparency */
+    background: rgba(0, 0, 0, 1.0); /* Dark background with slight transparency */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,8 +121,9 @@
 /* Neon title styling */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap'); /* Importing Orbitron Font */
 
+/* Responsive Neon Title Styling */
 .title {
-    font-size: 1900%; /* Very large font size */
+    font-size: clamp(1900%, 5vw, 3.5rem); /* Dynamically adjusts font size */
     font-weight: bold;
     font-family: 'Orbitron', sans-serif; /* Gaming-style font */
     color: #f8f8f8; /* Neon pink */
@@ -137,4 +138,12 @@
     text-transform: uppercase; /* Converts the text to uppercase */
     letter-spacing: 0.1em; /* Adds a futuristic spacing effect */
     margin-bottom: 4rem;
+    text-align: center; /* Ensures proper alignment */
+}
+
+/* Optional media query for smaller screens */
+@media (max-width: 768px) {
+    .title {
+        font-size: clamp(1rem, 7vw, 2.5rem); /* Adjust font size for smaller screens */
+    }
 }
