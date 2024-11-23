@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'; // For navigation
-import styles from './GameList.module.css'; // Import CSS module
+import { useNavigate } from "react-router-dom"; // For navigation
+import styles from "./GameList.module.css"; // Import CSS module
 import Web3 from "web3";
 import tradeKeyAbi from "../../TradeKeyABI.json"; // Import your contract ABI here
 
 // Replace with your deployed contract address
-const contractAddress = "0xe13885a3cdE0F8676791d0C87bF3FE45aFC91B04";
+const contractAddress = "0xb84CE7924EC075bEBa60582dE2532a31fdC5F676";
 
 const GameList = () => {
-  
   const [account, setAccount] = useState(null);
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
-  const [price, setPrice] = useState("");
-  const [itemId, setItemId] = useState("");
   const [allItems, setAllItems] = useState([]);
-  
 
   const navigate = useNavigate();
 
   const handleCreatePost = () => {
-    navigate('/create-post'); // Navigate to CreatePost page
+    navigate("/create-post"); // Navigate to CreatePost page
   };
 
   const handleGetAllItems = async () => {
@@ -30,17 +26,17 @@ const GameList = () => {
         seller: items[0][index],
         buyer: items[1][index],
         price: items[2][index],
-        value: items[3][index],
+        value: JSON.parse(items[3][index]), // Parse item.value as JSON
         available: items[4][index],
       }));
       setAllItems(itemDetails);
-      console.log("itemDetails :", allItems)
+      console.log("itemDetails:", itemDetails);
     } catch (error) {
       console.error(error);
       alert("Error fetching item details");
     }
   };
-  
+
   useEffect(() => {
     const loadWeb3AndContract = async () => {
       if (!window.ethereum) {
@@ -67,7 +63,6 @@ const GameList = () => {
     loadWeb3AndContract();
   }, []);
 
-  // Handle account changes in MetaMask
   useEffect(() => {
     const handleAccountsChanged = (accounts) => {
       if (accounts.length > 0) {
@@ -89,48 +84,89 @@ const GameList = () => {
   }, []);
 
   const handleGameClick = (id) => {
-    // Navigate to the IdDetails page with the game ID
-    navigate('/id-details', { state: { id } }); // Pass the game ID as state
+    navigate("/id-details", { state: { id } }); // Pass the game ID as state
   };
 
   const games = [
-    { id: 1, name: 'Game 1', description: 'Description 1', price: 10000 },
-    { id: 2, name: 'Game 2', description: 'Description 2', price: 20000 },
+    { id: 1, name: "Game 1", description: "Description 1", price: 10000 },
+    { id: 2, name: "Game 2", description: "Description 2", price: 20000 },
   ];
-  //hello perth
 
   return (
     
     <div className={styles.gameListContainer}>
       <h1 className={styles.title}>Game List</h1>
       <div className={styles.games}>
-        {games.map((game) => (
+        {allItems.map((item, index) => (
           <div
-            key={game.id}
+            key={index}
             className={styles.gameCard}
-            onClick={() => handleGameClick(game.id)} // Add click handler
+            onClick={() => handleGameClick(item.id || index)} // Add click handler (use item.id if it exists, else fallback to index)
           >
-            <h2 className={styles.gameName}>{game.name}</h2>
-            <p className={styles.description}>{game.description}</p>
-            <p className={styles.price}>Price: {game.price}</p>
+            <h2 className={styles.gameName}>Seller: {item.seller}</h2>
+            <p className={styles.description}>Buyer: {item.buyer}</p>
+            <p className={styles.price}>Price: {item.price}</p>
+            <p className={styles.availability}>
+              Available: {item.available ? "Yes" : "No"}
+            </p>
+
+            {/* Display item.value as a list */}
+            <ul className={styles.detailsList}>
+              {Object.entries(item.value).map(([key, value]) => (
+                <li key={key} className={styles.detailsItem}>
+                  <strong>{key}:</strong> {value}
+                </li>
+              ))}
+            </ul>
+
             <button className={styles.buyButton}>Buy!</button>
           </div>
         ))}
       </div>
+
+
+      <table>
+        <thead>
+          <tr>
+            <th>Seller</th>
+            <th>Buyer</th>
+            <th>Price</th>
+            <th>Details</th>
+            <th>Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allItems.map((item, index) => (
+            <tr key={index}>
+              <td>{item.seller}</td>
+              <td>{item.buyer}</td>
+              <td>{item.price}</td>
+              <td>
+                {/* Display parsed item.value as a list */}
+                <ul>
+                  {Object.entries(item.value).map(([key, value]) => (
+                    <li key={key}>
+                      <strong>{key}:</strong> {value}
+                    </li>
+                  ))}
+                </ul>
+              </td>
+              <td>{item.available ? "Yes" : "No"}</td>
+            </tr>
+          ))}
+        </tbody>
+
+      </table>
+
       <button className={styles.createPostButton} onClick={handleCreatePost}>
         +
       </button>
-      <button onClick={handleGetAllItems}>
-        get 
-      </button>
-      <button onClick={console.log("All item variable:", allItems)}>
-        get all
-      </button>
-      <button onClick={console.log("item slice:", allItems)}>
-        test array
+      <button onClick={handleGetAllItems}>Get Items</button>
+      <button onClick={() => console.log("All items variable:", allItems)}>Log All Items</button>
+      <button onClick={() => console.log("Item slice:", allItems.slice(0, 3))}>
+        Test Array
       </button>
     </div>
-    
   );
 };
 
