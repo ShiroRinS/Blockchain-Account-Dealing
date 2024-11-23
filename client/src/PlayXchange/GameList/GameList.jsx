@@ -105,7 +105,7 @@ const GameList = () => {
           >
             <h2 className={styles.gameName}>Seller: {item.seller}</h2>
             <p className={styles.description}>Buyer: {item.buyer}</p>
-            <p className={styles.price}>Price: {item.price}</p>
+            <p className={styles.price}>Price: {Web3.utils.fromWei(item.price, "ether")} ETH</p>
             <p className={styles.availability}>
               Available: {item.available ? "Yes" : "No"}
             </p>
@@ -123,7 +123,6 @@ const GameList = () => {
           </div>
         ))}
       </div>
-
 
       <table>
         <thead>
