@@ -102,14 +102,6 @@ const Confirmation = () => {
 
   return (
     <div className={styles.confirmationContainer}>
-      {/* Header */}
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <span className={styles.navItem} onClick={() => navigate('/game-list')}>Game list</span>
-          <span className={styles.navTitle}>PlayXChange</span>
-          <span className={styles.navItem}>{account || "Not connected"}</span>
-        </nav>
-      </header>
 
       {/* Confirmation Box */}
       <div className={styles.confirmationCard}>

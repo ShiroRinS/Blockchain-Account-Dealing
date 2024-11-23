@@ -29,17 +29,6 @@ const AccountSecret = () => {
 
   return (
     <div className={styles.accountSecretContainer}>
-      {/* Header */}
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <span className={styles.navItem} onClick={() => navigate('/game-list')}>
-            Game list
-          </span>
-          <span className={styles.navTitle}>PlayXChange</span>
-          <span className={styles.navItem}>id metamask</span>
-        </nav>
-      </header>
-
       {/* Form */}
       <div className={styles.formCard}>
         <h1 className={styles.title}>STEP 2</h1>
