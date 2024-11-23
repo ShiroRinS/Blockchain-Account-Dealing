@@ -97,6 +97,7 @@ const GameList = () => {
     { id: 1, name: 'Game 1', description: 'Description 1', price: 10000 },
     { id: 2, name: 'Game 2', description: 'Description 2', price: 20000 },
   ];
+  //hello perth
 
   return (
     
