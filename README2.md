@@ -13,6 +13,9 @@ Run the `unbox` command using 1 of 2 ways.
 $ npm install -g truffle  
 $ npm install --save-dev webpack-dev-server
 
+$ truffle compile 
+$ truffle migrate
+
 ```
 
 Start the react dev server.
