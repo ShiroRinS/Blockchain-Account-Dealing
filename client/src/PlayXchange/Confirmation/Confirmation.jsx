@@ -1,8 +1,34 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'; // For navigation and state access
 import styles from './Confirmation.module.css';
+<<<<<<< Updated upstream
 
 const Confirmation = () => {
+=======
+import tradeKeyAbi from "../../TradeKeyABI.json"; // Import your contract ABI here
+import adr from "../../address.txt"
+
+const Confirmation = () => {
+  const storedCredentials = localStorage.getItem('Credentials');
+  const storedformData = localStorage.getItem('formData');
+  const contractAddress = "0xd903dC0Ea5DF7451B59E0e34E6b3ACf868C62e56";
+
+  // State management
+  const [account, setAccount] = useState(null);
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+
+  // Parse stored data
+  const credentials = storedCredentials ? JSON.parse(storedCredentials) : {};
+  const formData = storedformData ? JSON.parse(storedformData) : {};
+  const { username, password } = credentials;
+  const { price, ...restOfformData } = formData;
+
+  const priceforsubmit = formData.price ? parseFloat(formData.price) : null;
+  const mergedData = { ...credentials, ...restOfformData };
+  const value = JSON.stringify(mergedData);
+
+>>>>>>> Stashed changes
   const navigate = useNavigate();
   const location = useLocation();
 

@@ -8,6 +8,11 @@
   },
   "dependencies": {
     "@metamask/detect-provider": "^2.0.0",
+<<<<<<< Updated upstream
+=======
+    "@splinetool/react-spline": "^4.0.0",
+    "axios": "^1.7.8",
+>>>>>>> Stashed changes
     "ethers": "^6.13.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

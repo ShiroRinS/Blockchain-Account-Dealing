@@ -1,6 +1,18 @@
+<<<<<<< Updated upstream
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // For navigation
 import styles from './GameList.module.css'; // Import CSS module
+=======
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // For navigation
+import styles from "./GameList.module.css"; // Import CSS module
+import Web3 from "web3";
+import tradeKeyAbi from "../../TradeKeyABI.json"; // Import your contract ABI here
+import adr from "../../address.txt";
+
+// Replace with your deployed contract address
+const contractAddress = "0xd903dC0Ea5DF7451B59E0e34E6b3ACf868C62e56";
+>>>>>>> Stashed changes
 
 const GameList = () => {
   const navigate = useNavigate();

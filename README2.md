@@ -21,6 +21,8 @@ $ truffle migrate
 Start the react dev server.
 
 ```sh
+$ npm install axios  ---> use axios to run steam API
+
 $ cd client
 $ npm start
 ```

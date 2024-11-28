@@ -15,11 +15,20 @@ import Footer from "./components/Footer";
   // PlayXchange Frontend pages
 import Home from "./PlayXchange/Home/Home.jsx";
 import GameList from "./PlayXchange/GameList/GameList.jsx";
+<<<<<<< Updated upstream
 import NewIdDetails from './PlayXchange/IdDetails/newidDetails.jsx';
+=======
+import IdDetails from "./PlayXchange/IdDetails/IdDetails.jsx";
+>>>>>>> Stashed changes
 import CreatePost from "./PlayXchange/CreatePost/CreatePost.jsx";
 import AccountSecret from './PlayXchange/AccountSecret/AccountSecret.jsx';
 import Confirmation from './PlayXchange/Confirmation/Confirmation.jsx';
 import Success from './PlayXchange/Success/Success.jsx';
+<<<<<<< Updated upstream
+=======
+import NewIdDetails from "./PlayXchange/IdDetails/newidDetails.jsx";
+import TestIdDetails from "./PlayXchange/IdDetails/TestIdDetails.jsx";
+>>>>>>> Stashed changes
 
   // PlayXchange Frontend components
 //import Navbar from "./components/Footer";

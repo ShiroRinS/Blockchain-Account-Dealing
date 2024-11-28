@@ -3,7 +3,11 @@ import Web3 from "web3";
 import tradeKeyAbi from "./TradeKeyABI.json"; // Import your contract ABI here
 
 // Replace with your deployed contract address
+<<<<<<< Updated upstream
 const contractAddress = "0x310F46F13f3D4f183b5D94D5508348625F22f9f3";
+=======
+const contractAddress = "0xd903dC0Ea5DF7451B59E0e34E6b3ACf868C62e56";
+>>>>>>> Stashed changes
 
 const App2 = () => {
   const [account, setAccount] = useState(null);
