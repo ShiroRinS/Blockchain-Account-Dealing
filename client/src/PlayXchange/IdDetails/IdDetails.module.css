@@ -159,6 +159,7 @@
 
 /* Buy button */
 .detailsCard .buyButton {
+  margin-top: 2rem;
   background: linear-gradient(to right, #ff00ff, #e600e6);
   color: white;
   border: none;
@@ -329,8 +330,8 @@
 .gamesList .gameName {
   font-size: 1.7rem;
   font-weight: bold;
-  color: #ff00ff;
-  text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
+  color: #ff005d; /* Neon pink */
+  text-shadow: 0 0 15px #ff005d, 0 0 25px #ff005d, 0 0 35px #ff005d;
   margin-bottom: 5px;
 }
 
@@ -338,3 +339,19 @@
   font-size: 1.2rem;
   color: #d1d1e0;
 }
+
+/* Availability styling */
+.availableYes {
+  font-size: 2em;
+  margin: 5px 0;
+  color: #00ff00; /* Cool green */
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; /* Neon glow effect */
+}
+
+.availableNo {
+  font-size: 2em;
+  margin: 5px 0;
+  color: #ff0000; /* Bright red */
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* Neon glow effect */
+}
+

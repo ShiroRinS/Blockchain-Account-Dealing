@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./GameList.module.css";
 import Web3 from "web3";
@@ -12,7 +12,9 @@ const GameList = () => {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [allItems, setAllItems] = useState([]);
+  const [activeCardIndex, setActiveCardIndex] = useState(null); // Track middle card
   const navigate = useNavigate();
+  const containerRef = useRef(null);
 
   const handleCreatePost = () => {
     navigate("/create-post");
@@ -68,6 +70,28 @@ const GameList = () => {
     }
   };
 
+  const handleScroll = () => {
+    const container = containerRef.current;
+    const cards = container.querySelectorAll(`.${styles.gameCard}`);
+
+    let middleIndex = null;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const centerDistance = Math.abs(
+        cardRect.top + cardRect.height / 2 - window.innerHeight / 2
+      );
+
+      if (centerDistance < closestDistance) {
+        closestDistance = centerDistance;
+        middleIndex = index;
+      }
+    });
+
+    setActiveCardIndex(middleIndex);
+  };
+
   useEffect(() => {
     loadWeb3AndContract();
   }, []);
@@ -96,71 +120,95 @@ const GameList = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    container.addEventListener("scroll", handleScroll);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleGameClick = (id) => {
     navigate("/id-details", { state: { id } });
   };
 
   return (
     <div className={styles.gameListContainer}>
-    <span className={styles.titleDecoration}>
-      <span>I</span> {/*1st*/}
-      <span>I</span>
-      <span>I</span>
-      <span>I</span>
-      <span>I</span> {/*5th*/}
-      <span>I</span>
-      <span>I</span>
-      <span>I</span>
-      <span>I</span>
-      <span>I</span> {/*10th*/}
-      <span>I</span>
-      <span>I</span>
-      <span>I</span>
-      <span>I</span>
-      <span>I</span> {/*15th*/}
-      <span>I</span>
-      <span>I</span>
-      <span>I</span>
-      <span>I</span>
-      <span>I</span> {/*20th*/}
-    </span>
-    <h1 className={styles.title}>Game List</h1>
-    <h1 className={styles.titleGitch}>Game List</h1>
+      <span className={styles.titleDecoration}>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+        <span>I</span>
+      </span>
 
-    <br/>
-    <br/>
-    <br/>
-    {allItems.map((item, index) => (
-        <div
-          key={index}
-          className={styles.gameCard}
-          onClick={() => handleGameClick(item.id || index)}
-        >
-        <h2 className={styles.gameName}>
-          {item.value?.detail ? (
-            <span>
-              <strong> {item.value.detail} </strong>
-            </span>
-          ) : (
-            "No Details Available"
-          )}
-        </h2>
+      <span className={styles.space}></span>
+      <span className={styles.space}></span>
 
-          
-          <p className={styles.price}>
-              <strong>Price: {Web3.utils.fromWei(item.price, "ether")} ETH</strong>
-          </p>
-          <p className={styles.description}>
-          <strong>Steam Username:</strong> {item.value?.username || "N/A"}
-            <br />
-            <strong>Seller:</strong> {item.seller}
-          </p>
-          <p className={styles.availability}>
-            <strong>Available:</strong> {item.available ? "Yes" : "No"}
-          </p>
-          <button className={styles.buyButton}>Buy!</button>
-        </div>
-      ))}
+      <h1 className={styles.title}>Game List</h1>
+      <span className={styles.space}></span>
+      <span className={styles.space}></span>
+      <h2 className={styles.titleGlitch}>V V V</h2>
+
+      <span className={styles.space}></span>
+
+      <div className={styles.games} ref={containerRef}>
+        {allItems.map((item, index) => (
+          <div
+            key={index}
+            className={`${styles.gameCard} ${
+              index === activeCardIndex ? styles.middleCard : ""
+            }`}
+            onClick={() => handleGameClick(item.id || index)}
+          >
+            <h2 className={styles.gameName}>
+              {item.value?.detail ? (
+                <span>
+                  <strong> {item.value.detail} </strong>
+                </span>
+              ) : (
+                "No Details Available"
+              )}
+            </h2>
+
+            <p className={styles.price}>
+              <strong>
+                Price: {Web3.utils.fromWei(item.price, "ether")} ETH
+              </strong>
+            </p>
+            <p className={styles.description}>
+              <strong>Steam Username:</strong> {item.value?.username || "N/A"}
+              <br />
+              <strong>Seller:</strong> {item.seller}
+            </p>
+            <p
+              className={
+                item.available ? styles.availableYes : styles.availableNo
+              }
+            >
+              <strong>Available:</strong> {item.available ? "Yes" : "No"}
+            </p>
+
+            <button className={styles.buyButton}>Buy!</button>
+          </div>
+        ))}
+      </div>
       <button className={styles.createPostButton} onClick={handleCreatePost}>
         +
       </button>

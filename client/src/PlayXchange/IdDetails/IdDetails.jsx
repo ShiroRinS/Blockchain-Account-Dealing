@@ -134,9 +134,14 @@ const IdDetails = () => {
             <br />
             <strong>Seller:</strong> {gameDetails.seller}
           </p>
-          <p className={styles.availability}>
+          <p
+            className={
+              gameDetails.available ? styles.availableYes : styles.availableNo
+            }
+          >
             <strong>Available:</strong> {gameDetails.available ? "Yes" : "No"}
           </p>
+
           <button className={styles.buyButton} onClick={handlePurchase}>Buy!</button>
         </div>
       ) : (

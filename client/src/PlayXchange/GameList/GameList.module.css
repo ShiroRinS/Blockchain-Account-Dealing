@@ -1,12 +1,56 @@
-/* General container for the GameList page */
-.gameListContainer {
-    padding: 20px;
-    background-color: black;
-    min-height: 100vh;
-    position: relative; /* To position the floating button */
-  }
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* General container for the GameList page */
+.gameListContainer {
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Required for pseudo-elements */
+  overflow: hidden; /* Ensures the background animation stays within bounds */
+  font-family: sans-serif; /* Gaming font */
+  background: radial-gradient(circle, #0a0a0f, #1a1a26, #121212); /* Base gradient */
+}
+
+/* Subtle Animated Dark Gradient Glow */
+.gameListContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(40, 40, 60, 0.8),
+    rgba(20, 20, 40, 0.9),
+    rgba(50, 50, 80, 0.8)
+  );
+  background-size: 400% 400%;
+  animation: darkGradientMove 15s infinite;
+  z-index: -1; /* Keeps the background behind the content */
+  opacity: 0.9; /* Keeps it subtle */
+  filter: blur(15px); /* Glowing and smooth effect */
+}
+
+/* Animated Glow Keyframes */
+@keyframes darkGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.space {
+  margin: 2rem;
+}
 /* Game List Title */
 /* Gaming Title with Animation */
 .title {
@@ -19,6 +63,28 @@
   text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Neon pink glow */
   animation: glitchAnimation 3s infinite; /* Apply glitch animation */
   overflow: hidden; /* Prevent overflow during animation */
+}
+
+/* Glitch Animation */
+@keyframes glitchAnimation {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-5px, 5px);
+  }
+  40% {
+    transform: translate(5px, -5px);
+  }
+  60% {
+    transform: translate(-5px, -5px);
+  }
+  80% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 /* Glitch Effect Using Pseudo-Elements */
@@ -49,28 +115,6 @@
   animation: glitchEffect 2s infinite ease-in-out reverse;
 }
 
-/* Glitch Animation */
-@keyframes glitchAnimation {
-  0% {
-    transform: translate(0, 0);
-  }
-  20% {
-    transform: translate(-5px, 5px);
-  }
-  40% {
-    transform: translate(5px, -5px);
-  }
-  60% {
-    transform: translate(-5px, -5px);
-  }
-  80% {
-    transform: translate(5px, 5px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
 /* Secondary Glitch Effect for RGB Offsets */
 @keyframes glitchEffect {
   0% {
@@ -92,13 +136,14 @@
 
 
 .titleGlitch {
-  font-size: 10.5rem;
+  font-size: 5.5rem;
   text-align: center;
   color: white;
   margin-bottom: 20px;
   position: relative; /* Needed for positioning the RGB line */
   text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
   font-family: 'Press Start 2P', sans-serif; /* Optional gaming font */
+  animation: glitch 1s infinite ease-in-out;
 }
 
 
@@ -241,16 +286,19 @@
     background-color: #1e1e2f; /* Original dark background */
     border: 2px solid #ff00ff; /* Original neon pink border */
     border-radius: 10px;
-    padding: 20px;
+    padding: 40px;
+    padding-left: 8rem;
+    padding-right: 8rem;
     margin: 10px;
     color: #fff;
     text-align: left;
     box-shadow: 0 0 15px #ff00ff; /* Neon glow effect */
     transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+    font-family: "Press Start 2P"
   }
   
   .gameCard:hover {
-    transform: scale(1.01); /* Slight zoom on hover */
+    transform: scale(1.04); /* Slight zoom on hover */
     box-shadow: 0 0 25px #ff00ff; /* Brighter neon glow on hover */
   }
   
@@ -258,6 +306,7 @@
     font-size: 2.5em;
     color: #ff00ff; /* Original neon pink for the title */
     text-shadow: 0 0 10px #ff00ff; /* Glow effect for the title */
+    margin-bottom: 1rem;
   }
   
   .description,
@@ -287,6 +336,7 @@
   }
   
   .buyButton {
+    margin-top: 1rem;
     background-color: #ff00ff; /* Retain neon pink */
     color: #fff;
     border: none;
@@ -328,3 +378,17 @@
     background-color: #e600e6; /* Slightly darker neon pink */
   }
   
+  /* Availability styling */
+.availableYes {
+  font-size: 1.5em;
+  margin: 5px 0;
+  color: #00ff00; /* Cool green */
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; /* Neon glow effect */
+}
+
+.availableNo {
+  font-size: 1.5em;
+  margin: 5px 0;
+  color: #ff0000; /* Bright red */
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* Neon glow effect */
+}
