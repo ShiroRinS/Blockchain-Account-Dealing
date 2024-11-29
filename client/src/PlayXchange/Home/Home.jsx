@@ -8,6 +8,7 @@ const Home = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false); // Tracks if the Spline iframe has loaded
   const [showButton, setShowButton] = useState(false); // Tracks if the button should be shown
 
+
   useEffect(() => {
     // Start the 1-second buffer only after the iframe is loaded
     if (iframeLoaded) {

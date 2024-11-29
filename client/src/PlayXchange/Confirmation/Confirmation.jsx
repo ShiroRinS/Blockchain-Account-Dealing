@@ -7,7 +7,7 @@ import tradeKeyAbi from "../../TradeKeyABI.json"; // Import your contract ABI he
 const Confirmation = () => {
   const storedCredentials = localStorage.getItem('Credentials');
   const storedformData = localStorage.getItem('formData');
-  const contractAddress = "0xb84CE7924EC075bEBa60582dE2532a31fdC5F676";
+  const contractAddress = "0x89eFcEBE8d6266E360602AAE1Ab5C434C59708C8";
 
   // State management
   const [account, setAccount] = useState(null);
