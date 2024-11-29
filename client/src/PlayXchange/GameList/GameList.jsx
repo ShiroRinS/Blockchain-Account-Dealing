@@ -102,51 +102,66 @@ const GameList = () => {
 
   return (
     <div className={styles.gameListContainer}>
-      <h1 className={styles.title}>Game List</h1>
-      <div className={styles.titleDecoration}>
-        <span>H</span>
-        <span>I</span>
-        <span>G</span>
-        <span>H</span>
-        <span>E</span>
-        <span>R</span>
-      </div>
+    <span className={styles.titleDecoration}>
+      <span>I</span> {/*1st*/}
+      <span>I</span>
+      <span>I</span>
+      <span>I</span>
+      <span>I</span> {/*5th*/}
+      <span>I</span>
+      <span>I</span>
+      <span>I</span>
+      <span>I</span>
+      <span>I</span> {/*10th*/}
+      <span>I</span>
+      <span>I</span>
+      <span>I</span>
+      <span>I</span>
+      <span>I</span> {/*15th*/}
+      <span>I</span>
+      <span>I</span>
+      <span>I</span>
+      <span>I</span>
+      <span>I</span> {/*20th*/}
+    </span>
+    <h1 className={styles.title}>Game List</h1>
+    <h1 className={styles.titleGitch}>Game List</h1>
 
+    <br/>
+    <br/>
+    <br/>
+    {allItems.map((item, index) => (
+        <div
+          key={index}
+          className={styles.gameCard}
+          onClick={() => handleGameClick(item.id || index)}
+        >
+        <h2 className={styles.gameName}>
+          {item.value?.detail ? (
+            <span>
+              <strong> {item.value.detail} </strong>
+            </span>
+          ) : (
+            "No Details Available"
+          )}
+        </h2>
 
-      {allItems.map((item, index) => (
-  <div
-    key={index}
-    className={styles.gameCard}
-    onClick={() => handleGameClick(item.id || index)}
-  >
-    <h2 className={styles.gameName}>Seller: {item.seller}</h2>
-    <p className={styles.description}>Buyer: {item.buyer}</p>
-    <p className={styles.price}>
-      Price: {Web3.utils.fromWei(item.price, "ether")} ETH
-    </p>
-    <p className={styles.availability}>
-      Available: {item.available ? "Yes" : "No"}
-    </p>
-    <ul className={styles.detailsList}>
-      {Object.entries(item.value).map(([key, value]) => {
-        // Hide sensitive fields like 'password'
-        if (key.toLowerCase() === "password") return null;
-        return (
-          <li key={key} className={styles.detailsItem}>
-            <strong>{key}:</strong> {value}
-          </li>
-        );
-      })}
-    </ul>
-    <button className={styles.buyButton}>Buy!</button>
-  </div>
-))}
-
-
-      <button
-        className={styles.createPostButton}
-        onClick={handleCreatePost}
-      >
+          
+          <p className={styles.price}>
+              <strong>Price: {Web3.utils.fromWei(item.price, "ether")} ETH</strong>
+          </p>
+          <p className={styles.description}>
+          <strong>Steam Username:</strong> {item.value?.username || "N/A"}
+            <br />
+            <strong>Seller:</strong> {item.seller}
+          </p>
+          <p className={styles.availability}>
+            <strong>Available:</strong> {item.available ? "Yes" : "No"}
+          </p>
+          <button className={styles.buyButton}>Buy!</button>
+        </div>
+      ))}
+      <button className={styles.createPostButton} onClick={handleCreatePost}>
         +
       </button>
     </div>

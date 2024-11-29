@@ -2,104 +2,232 @@
 .gameListContainer {
     padding: 20px;
     background-color: black;
-    color: white;
     min-height: 100vh;
     position: relative; /* To position the floating button */
   }
-  
-  /* Title styling */
-  .title {
-    font-size: 10.5rem;
-    text-align: center;
-    color: #ff00ff; /* Default fallback color */
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    animation: rgbCycle 3s infinite; /* Apply the animation */
-  }
 
-  
-  
-  /* Define the RGB animation */
-  @keyframes rgbCycle {
-    0% {
-      color: #ff0000; /* Red */
-      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-    }
-    25% {
-      color: #00ff00; /* Green */
-      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-    }
-    50% {
-      color: #0000ff; /* Blue */
-      text-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff;
-    }
-    75% {
-      color: #ff00ff; /* Purple */
-      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    }
-    100% {
-      color: #ff0000; /* Back to Red */
-      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-    }
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* Game List Title */
+/* Gaming Title with Animation */
+.title {
+  font-size: 10.5rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  position: relative; /* Needed for pseudo-elements */
+  font-family: 'Press Start 2P', sans-serif; /* Gaming font */
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Neon pink glow */
+  animation: glitchAnimation 3s infinite; /* Apply glitch animation */
+  overflow: hidden; /* Prevent overflow during animation */
+}
 
-  /* Keyframes for sound bar effect */
-  @keyframes soundBar {
-    0%, 100% {
-      transform: scaleY(1); /* Normal size */
-    }
-    50% {
-      transform: scaleY(2); /* Stretch vertically */
-    }
+/* Glitch Effect Using Pseudo-Elements */
+.title::before,
+.title::after {
+  content: attr(data-text); /* Use the same text as the main element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background: none;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0); /* Hide certain parts to create glitches */
+}
+
+/* Add RGB Offsets */
+.title::before {
+  color: #ff0000; /* Red offset */
+  z-index: -1;
+  animation: glitchEffect 2s infinite ease-in-out;
+}
+
+.title::after {
+  color: #00ffff; /* Cyan offset */
+  z-index: -1;
+  animation: glitchEffect 2s infinite ease-in-out reverse;
+}
+
+/* Glitch Animation */
+@keyframes glitchAnimation {
+  0% {
+    transform: translate(0, 0);
   }
-  
-  .titleDecoration {
-    display: flex; /* Makes the spans behave like individual bars */
-    justify-content: center; /* Center the letters */
-    align-items: flex-end; /* Align the letters to the bottom */
-    gap: 5px; /* Space between letters */
-    margin: 20px 0;
+  20% {
+    transform: translate(-5px, 5px);
   }
-  
-  .titleDecoration span {
-    font-size: 10.5rem; /* Large font size */
-    color: #ff00ff; /* Neon pink color */
-    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    animation: soundBarEffect 1.5s infinite ease-in-out;
-    transform-origin: bottom; /* Animate from the bottom */
+  40% {
+    transform: translate(5px, -5px);
   }
-  
-  /* Add delay to each span for staggered animation */
-  .titleDecoration span:nth-child(1) {
-    animation-delay: 0s;
+  60% {
+    transform: translate(-5px, -5px);
   }
-  .titleDecoration span:nth-child(2) {
-    animation-delay: 0.1s;
+  80% {
+    transform: translate(5px, 5px);
   }
-  .titleDecoration span:nth-child(3) {
-    animation-delay: 0.2s;
+  100% {
+    transform: translate(0, 0);
   }
-  .titleDecoration span:nth-child(4) {
-    animation-delay: 0.3s;
+}
+
+/* Secondary Glitch Effect for RGB Offsets */
+@keyframes glitchEffect {
+  0% {
+    clip: rect(5px, 9999px, 20px, 0);
   }
-  .titleDecoration span:nth-child(5) {
-    animation-delay: 0.4s;
+  25% {
+    clip: rect(10px, 9999px, 40px, 0);
   }
-  .titleDecoration span:nth-child(6) {
-    animation-delay: 0.5s;
+  50% {
+    clip: rect(15px, 9999px, 10px, 0);
   }
-  
-  /* Keyframes for the sound bar effect */
-  @keyframes soundBarEffect {
-    0%, 100% {
-      transform: scaleY(1); /* Normal size */
-    }
-    50% {
-      transform: scaleY(2); /* Double height */
-    }
+  75% {
+    clip: rect(5px, 9999px, 30px, 0);
   }
-  
+  100% {
+    clip: rect(20px, 9999px, 5px, 0);
+  }
+}
+
+
+.titleGlitch {
+  font-size: 10.5rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  position: relative; /* Needed for positioning the RGB line */
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  font-family: 'Press Start 2P', sans-serif; /* Optional gaming font */
+}
+
+
+/* Glitch animation keyframes */
+@keyframes glitch {
+  0% {
+    text-shadow: 1px 1px 2px #ff00ff, -1px -1px 2px #00ffff;
+    transform: translate(0, 0);
+  }
+  20% {
+    text-shadow: -2px 2px 4px #00ffff, 2px -2px 4px #ff00ff;
+    transform: translate(-3px, 3px);
+  }
+  40% {
+    text-shadow: 2px -2px 4px #ff00ff, -2px 2px 4px #00ffff;
+    transform: translate(2px, -2px);
+  }
+  60% {
+    text-shadow: -1px -1px 2px #00ffff, 1px 1px 2px #ff00ff;
+    transform: translate(-1px, 1px);
+  }
+  80% {
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+    transform: translate(0, 0);
+  }
+  100% {
+    text-shadow: 1px -1px 2px #00ffff, -1px 1px 2px #ff00ff;
+    transform: translate(1px, -1px);
+  }
+}
+
+/* RGB Line Effect */
+.rgbLine::after {
+  content: ''; /* Empty content for the decorative line */
+  position: absolute;
+  bottom: -10px; /* Position the line just below the title */
+  left: 0;
+  width: 100%; /* Line spans the entire width of the title */
+  height: 8px; /* Thickness of the line */
+  background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #ff0000); /* RGB gradient */
+  background-size: 300% 100%; /* Increased size for smoother animation */
+  animation: rgbLineMove 3s infinite linear; /* Continuous animation */
+}
+
+/* Keyframes for the Moving RGB Line */
+@keyframes rgbLineMove {
+  0% {
+    background-position: 0% 0%; /* Start position */
+  }
+  50% {
+    background-position: 150% 0%; /* Midpoint for smooth transition */
+  }
+  100% {
+    background-position: 300% 0%; /* End position loops back to start */
+  }
+}
+
+
+
+  /* RGB Cycling Animation */
+@keyframes rgbCycle {
+  0% {
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* Red */
+  }
+  25% {
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; /* Green */
+  }
+  50% {
+    text-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff; /* Blue */
+  }
+  75% {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Purple */
+  }
+  100% {
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* Back to Red */
+  }
+}
+
+/* Container for Sound Bar Animation */
+.titleDecoration {
+  display: flex; /* Makes the spans behave like individual bars */
+  justify-content: center; /* Center the letters */
+  align-items: flex-end; /* Align the letters to the bottom */
+  gap: 5px; /* Space between letters */
+  margin: 20px 0;
+}
+
+/* Sound Bar Animation with RGB Cycling */
+.titleDecoration span {
+  font-size: 15.5rem; /* Large font size */
+  color: #ffffff; /* Base color */
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Initial shadow */
+  animation: soundBarEffect 1.5s infinite ease-in-out, rgbCycle 2s infinite; /* Combine sound bar and RGB animations */
+  transform-origin: bottom; /* Animate from the bottom */
+}
+
+/* Sound Bar Effect */
+@keyframes soundBarEffect {
+  0%, 100% {
+    transform: scaleY(0.3); /* Compressed size */
+  }
+  50% {
+    transform: scaleY(0.8); /* Expanded size */
+  }
+}
+
+/* Add delay to each span for staggered animation */
+/* Add delay to each span for staggered animation */
+.titleDecoration span:nth-child(1) { animation-delay: 0s, 0s; }
+.titleDecoration span:nth-child(2) { animation-delay: 0.1s, 0.1s; }
+.titleDecoration span:nth-child(3) { animation-delay: 0.2s, 0.2s; }
+.titleDecoration span:nth-child(4) { animation-delay: 0.3s, 0.3s; }
+.titleDecoration span:nth-child(5) { animation-delay: 0.4s, 0.4s; }
+.titleDecoration span:nth-child(6) { animation-delay: 0.5s, 0.5s; }
+.titleDecoration span:nth-child(7) { animation-delay: 0.6s, 0.6s; }
+.titleDecoration span:nth-child(8) { animation-delay: 0.7s, 0.7s; }
+.titleDecoration span:nth-child(9) { animation-delay: 0.8s, 0.8s; }
+.titleDecoration span:nth-child(10) { animation-delay: 0.9s, 0.9s; }
+.titleDecoration span:nth-child(11) { animation-delay: 1s, 1s; }
+.titleDecoration span:nth-child(12) { animation-delay: 1.1s, 1.1s; }
+.titleDecoration span:nth-child(13) { animation-delay: 1.2s, 1.2s; }
+.titleDecoration span:nth-child(14) { animation-delay: 1.3s, 1.3s; }
+.titleDecoration span:nth-child(15) { animation-delay: 1.4s, 1.4s; }
+.titleDecoration span:nth-child(16) { animation-delay: 1.5s, 1.5s; }
+.titleDecoration span:nth-child(17) { animation-delay: 1.6s, 1.6s; }
+.titleDecoration span:nth-child(18) { animation-delay: 1.7s, 1.7s; }
+.titleDecoration span:nth-child(19) { animation-delay: 1.8s, 1.8s; }
+.titleDecoration span:nth-child(20) { animation-delay: 1.9s, 1.9s; }
+
   
   /* Game card styling */
   .games {
@@ -140,7 +268,7 @@
   }
   
   .price {
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin: 5px 0;
     color: #ffc400; /* Softer contrast for text */
     text-shadow: 0 0 10px #ffd900, 0 0 20px;
