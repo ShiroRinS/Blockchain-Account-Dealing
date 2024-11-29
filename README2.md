@@ -12,13 +12,16 @@ Run the `unbox` command using 1 of 2 ways.
 # Install Truffle globally and run `truffle unbox`
 $ npm install -g truffle  
 $ npm install --save-dev webpack-dev-server
-
+$ truffle compile
+$ truffle migrate
+copy contract address from trade.js and paste in contract address in app2
 ```
 
 Start the react dev server.
 
 ```sh
 $ cd client
+# make sure to change contractAddress variable in confirmation.jsx to your contractaddress
 $ npm start
 ```
 

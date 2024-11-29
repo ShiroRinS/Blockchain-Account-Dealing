@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import styles from './CreatePost.module.css'; // Import CSS module
 
@@ -18,9 +18,14 @@ const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     console.log('Form Data:', formData);
-    // Add your logic to handle form data if needed
-    navigate('/account-secret'); // Navigate to AccountSecret page
+    
+    // Save the formData object to localStorage as a JSON string
+    localStorage.setItem('formData', JSON.stringify(formData));
+    
+    // Navigate to the AccountSecret page
+    navigate('/account-secret');
   };
 
   return (

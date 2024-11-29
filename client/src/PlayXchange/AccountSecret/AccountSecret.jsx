@@ -17,6 +17,8 @@ const AccountSecret = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted Credentials:', credentials);
+    // Save the formData object to localStorage as a JSON string
+    localStorage.setItem('Credentials', JSON.stringify(credentials));
     // Add logic for saving or verifying credentials
     navigate('/confirmation'); // Replace with your next page route
   };

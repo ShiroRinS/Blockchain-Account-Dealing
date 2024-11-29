@@ -3,9 +3,9 @@ import Web3 from "web3";
 import tradeKeyAbi from "./TradeKeyABI.json"; // Import your contract ABI here
 
 // Replace with your deployed contract address
-const contractAddress = "0x310F46F13f3D4f183b5D94D5508348625F22f9f3";
+const contractAddress = "0xe13885a3cdE0F8676791d0C87bF3FE45aFC91B04";
 
-const App = () => {
+const App2 = () => {
   const [account, setAccount] = useState(null);
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
@@ -176,4 +176,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App2;
