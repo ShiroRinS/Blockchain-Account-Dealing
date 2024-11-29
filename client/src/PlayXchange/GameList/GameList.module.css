@@ -9,12 +9,97 @@
   
   /* Title styling */
   .title {
-    font-size: 2.5rem;
+    font-size: 10.5rem;
     text-align: center;
-    color: #ff00ff; /* Neon pink */
-    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    color: #ff00ff; /* Default fallback color */
     margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    animation: rgbCycle 3s infinite; /* Apply the animation */
   }
+
+  
+  
+  /* Define the RGB animation */
+  @keyframes rgbCycle {
+    0% {
+      color: #ff0000; /* Red */
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    }
+    25% {
+      color: #00ff00; /* Green */
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    }
+    50% {
+      color: #0000ff; /* Blue */
+      text-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff;
+    }
+    75% {
+      color: #ff00ff; /* Purple */
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+    100% {
+      color: #ff0000; /* Back to Red */
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    }
+  }
+  
+
+  /* Keyframes for sound bar effect */
+  @keyframes soundBar {
+    0%, 100% {
+      transform: scaleY(1); /* Normal size */
+    }
+    50% {
+      transform: scaleY(2); /* Stretch vertically */
+    }
+  }
+  
+  .titleDecoration {
+    display: flex; /* Makes the spans behave like individual bars */
+    justify-content: center; /* Center the letters */
+    align-items: flex-end; /* Align the letters to the bottom */
+    gap: 5px; /* Space between letters */
+    margin: 20px 0;
+  }
+  
+  .titleDecoration span {
+    font-size: 10.5rem; /* Large font size */
+    color: #ff00ff; /* Neon pink color */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    animation: soundBarEffect 1.5s infinite ease-in-out;
+    transform-origin: bottom; /* Animate from the bottom */
+  }
+  
+  /* Add delay to each span for staggered animation */
+  .titleDecoration span:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .titleDecoration span:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .titleDecoration span:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .titleDecoration span:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .titleDecoration span:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  .titleDecoration span:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  
+  /* Keyframes for the sound bar effect */
+  @keyframes soundBarEffect {
+    0%, 100% {
+      transform: scaleY(1); /* Normal size */
+    }
+    50% {
+      transform: scaleY(2); /* Double height */
+    }
+  }
+  
   
   /* Game card styling */
   .games {
@@ -25,52 +110,72 @@
   }
   
   .gameCard {
-    background-color: #1e013a;
+    background-color: #1e1e2f; /* Original dark background */
+    border: 2px solid #ff00ff; /* Original neon pink border */
     border-radius: 10px;
-    padding: 15px;
-    width: 300px;
-    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    transition: transform 0.2s ease-in-out;
+    padding: 20px;
+    margin: 10px;
+    color: #fff;
+    text-align: left;
+    box-shadow: 0 0 15px #ff00ff; /* Neon glow effect */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
   }
   
   .gameCard:hover {
-    transform: scale(1.05);
+    transform: scale(1.01); /* Slight zoom on hover */
+    box-shadow: 0 0 25px #ff00ff; /* Brighter neon glow on hover */
   }
   
   .gameName {
-    font-size: 1.5rem;
-    color: #ff00ff;
-    margin-bottom: 10px;
+    font-size: 2.5em;
+    color: #ff00ff; /* Original neon pink for the title */
+    text-shadow: 0 0 10px #ff00ff; /* Glow effect for the title */
   }
   
-  .description {
-    font-size: 1rem;
-    color: white;
-    margin-bottom: 10px;
+  .description,
+  .availability {
+    font-size: 1.5em;
+    margin: 5px 0;
+    color: #d1d1e0; /* Softer contrast for text */
   }
   
   .price {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #e6e600; /* Neon yellow */
-    margin-bottom: 10px;
+    font-size: 1.5em;
+    margin: 5px 0;
+    color: #ffc400; /* Softer contrast for text */
+    text-shadow: 0 0 10px #ffd900, 0 0 20px;
+  }
+
+
+  .detailsList {
+    margin: 10px 0;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .detailsItem {
+    font-size: 0.9em;
+    color: #b3b3cc; /* Subtle color for details */
   }
   
   .buyButton {
-    background-color: #ff00ff;
-    color: white;
-    padding: 10px 20px;
+    background-color: #ff00ff; /* Retain neon pink */
+    color: #fff;
     border: none;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 0 10px #ff00ff; /* Glow effect for the button */
+    transition: background-color 0.3s, box-shadow 0.3s;
   }
   
   .buyButton:hover {
-    transform: scale(1.1);
-    background-color: #e600e6;
+    background-color: #ccff02; /* Darker pink on hover */
+    box-shadow: 0 0 20px #95ff00; /* Stronger glow effect */
   }
+
+  
+  
   
   /* Floating "+" button */
   .createPostButton {
