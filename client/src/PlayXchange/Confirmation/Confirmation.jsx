@@ -86,7 +86,6 @@ const Confirmation = () => {
         .setPriceAndValue(Web3.utils.toWei(priceforsubmit.toString(), "ether"), value)
         .send({ from: account });
 
-      alert("Item listed successfully!");
       console.log("Price:", priceforsubmit)
       console.log("Value:", value)
       navigate('/success');

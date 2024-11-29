@@ -14,6 +14,7 @@ const IdDetails = () => {
   const [contract, setContract] = useState(null);
   const [gameDetails, setGameDetails] = useState(null);
   const [ownedGames, setOwnedGames] = useState([]);
+  const [account, setAccount] = useState(null);
 
   const loadWeb3AndContract = async () => {
     if (!window.ethereum) {
@@ -25,10 +26,10 @@ const IdDetails = () => {
       const web3Instance = new Web3(window.ethereum);
       setWeb3(web3Instance);
 
-      const contractInstance = new web3Instance.eth.Contract(
-        tradeKeyAbi,
-        contractAddress
-      );
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      setAccount(accounts[0]);
+
+      const contractInstance = new web3Instance.eth.Contract(tradeKeyAbi, contractAddress);
       setContract(contractInstance);
     } catch (error) {
       console.error("Error initializing Web3 or contract:", error);
@@ -61,13 +62,40 @@ const IdDetails = () => {
     }
   };
 
+  const handlePurchase = async () => {
+    if (!gameDetails) return alert("Game details not loaded yet.");
+    if (!gameDetails.available) return alert("This item is no longer available.");
+    
+    const priceInWei = Web3.utils.toWei(gameDetails.price.toString(), "ether");
+
+    try {
+      // Trigger MetaMask transaction
+      await contract.methods.purchase(gameDetails.id).send({
+        from: account,
+        value: priceInWei,
+      });
+
+      alert("Purchase successful!");
+
+      // Fetch username and password after successful purchase
+      const purchasedGame = await contract.methods.items(gameDetails.id).call();
+      const valueData = JSON.parse(purchasedGame.value);
+      const { username, password } = valueData;
+
+      alert(`Your game credentials:\nUsername: ${username}\nPassword: ${password}`);
+    } catch (error) {
+      console.error("Error during purchase:", error);
+      alert("Error completing the purchase. Please try again.");
+    }
+  };
+
   const fetchSteamGames = async (apiKey, steamId) => {
     try {
       const response = await fetch(
         `http://localhost:5000/steam-games?apiKey=${apiKey}&steamId=${steamId}`
       );
       const data = await response.json();
-  
+
       if (data && data.response && data.response.games) {
         setOwnedGames(data.response.games);
       } else {
@@ -78,8 +106,6 @@ const IdDetails = () => {
       alert("Error fetching Steam games.");
     }
   };
-  
-  
 
   useEffect(() => {
     loadWeb3AndContract();
@@ -95,25 +121,24 @@ const IdDetails = () => {
     <div className={styles.idDetailsContainer}>
       {gameDetails ? (
         <div className={styles.detailsCard}>
-        <h2 className={styles.gameName}>
-          <strong>{gameDetails.value?.detail || "No Details Available"}</strong>
-        </h2>
-        <p className={styles.price}>
-          <strong>Price: {gameDetails.price} ETH</strong>
-        </p>
-        <p className={styles.description}>
-          <strong>Steam Username:</strong> {gameDetails.value?.username || "N/A"}
-          <br />
-          <strong>Steam ID:</strong> {gameDetails.value?.id || "N/A"}
-          <br />
-          <strong>Seller:</strong> {gameDetails.seller}
-        </p>
-        <p className={styles.availability}>
-          <strong>Available:</strong> {gameDetails.available ? "Yes" : "No"}
-        </p>
-        <button className={styles.buyButton}>Buy!</button>
-      </div>
-      
+          <h2 className={styles.gameName}>
+            <strong>{gameDetails.value?.detail || "No Details Available"}</strong>
+          </h2>
+          <p className={styles.price}>
+            <strong>Price: {gameDetails.price} ETH</strong>
+          </p>
+          <p className={styles.description}>
+            <strong>Steam Username:</strong> {gameDetails.value?.username || "N/A"}
+            <br />
+            <strong>Steam ID:</strong> {gameDetails.value?.id || "N/A"}
+            <br />
+            <strong>Seller:</strong> {gameDetails.seller}
+          </p>
+          <p className={styles.availability}>
+            <strong>Available:</strong> {gameDetails.available ? "Yes" : "No"}
+          </p>
+          <button className={styles.buyButton} onClick={handlePurchase}>Buy!</button>
+        </div>
       ) : (
         <p>Loading game details...</p>
       )}
