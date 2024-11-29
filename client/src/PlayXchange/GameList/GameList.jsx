@@ -5,7 +5,7 @@ import Web3 from "web3";
 import tradeKeyAbi from "../../TradeKeyABI.json";
 
 // Replace with your deployed contract address
-const contractAddress = "0x4e6610eEBADB64Df6c0b2322C3B1823Da4e1fcdB";
+const contractAddress = "0x8A32399Cdf47f2271e9Ca8CDcC2Ec59b5616D5E8";
 
 const GameList = () => {
   const [account, setAccount] = useState(null);

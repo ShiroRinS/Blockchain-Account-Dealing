@@ -6,14 +6,19 @@ const app = express();
 const PORT = 5000;
 
 // Enable CORS
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000", // Replace with frontend domain in production
+};
+app.use(cors(corsOptions));
 
 // Steam API proxy route
 app.get("/steam-games", async (req, res) => {
   const { apiKey, steamId } = req.query;
 
   if (!apiKey || !steamId) {
-    return res.status(400).json({ error: "API key and Steam ID are required" });
+    return res
+      .status(400)
+      .json({ error: "API key and Steam ID are required" });
   }
 
   try {
@@ -26,10 +31,22 @@ app.get("/steam-games", async (req, res) => {
     }
 
     const data = await response.json();
-    res.json(data);
+
+    // Transform response to return only required data
+    const games = data.response.games?.map((game) => ({
+      appid: game.appid,
+      name: game.name,
+      playtime_forever: game.playtime_forever,
+      img_logo_url: `https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg`,
+    })) || [];
+
+    res.json({ games });
   } catch (error) {
     console.error("Error fetching Steam API:", error);
-    res.status(500).json({ error: "Failed to fetch Steam games" });
+    res.status(500).json({
+      error: "Failed to fetch Steam games",
+      message: error.message,
+    });
   }
 });
 
