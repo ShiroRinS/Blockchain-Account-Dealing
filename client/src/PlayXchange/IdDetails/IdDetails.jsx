@@ -64,7 +64,7 @@ const IdDetails = () => {
   const fetchSteamGames = async (apiKey, steamId) => {
     try {
       const response = await fetch(
-        `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${apiKey}&steamid=${steamId}&include_appinfo=true&format=json`
+        `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${apiKey}&steamid=${steamId}&include_appinfo=true&format=json`
       );
       const data = await response.json();
       if (data && data.response && data.response.games) {
@@ -73,10 +73,11 @@ const IdDetails = () => {
         setOwnedGames([]);
       }
     } catch (error) {
-      console.error("Error fetching games from Steam API:", error);
+      console.error("Error fetching games from Steam API via public proxy:", error);
       alert("Error fetching Steam games.");
     }
   };
+  
 
   useEffect(() => {
     loadWeb3AndContract();
