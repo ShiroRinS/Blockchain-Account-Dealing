@@ -95,29 +95,32 @@ const IdDetails = () => {
     <div className={styles.idDetailsContainer}>
       {gameDetails ? (
         <div className={styles.detailsCard}>
-          <h2 className={styles.gameName}>
-            <strong>{gameDetails.value?.detail || "No Details Available"}</strong>
-          </h2>
-          <p className={styles.price}>
-            <strong>Price: {gameDetails.price} ETH</strong>
-          </p>
-          <p className={styles.description}>
-            <strong>Steam Username:</strong> {gameDetails.value?.username || "N/A"}
-            <br />
-            <strong>Seller:</strong> {gameDetails.seller}
-          </p>
-          <p className={styles.availability}>
-            <strong>Available:</strong> {gameDetails.available ? "Yes" : "No"}
-          </p>
-          <button className={styles.buyButton}>Buy!</button>
-        </div>
+        <h2 className={styles.gameName}>
+          <strong>{gameDetails.value?.detail || "No Details Available"}</strong>
+        </h2>
+        <p className={styles.price}>
+          <strong>Price: {gameDetails.price} ETH</strong>
+        </p>
+        <p className={styles.description}>
+          <strong>Steam Username:</strong> {gameDetails.value?.username || "N/A"}
+          <br />
+          <strong>Steam ID:</strong> {gameDetails.value?.id || "N/A"}
+          <br />
+          <strong>Seller:</strong> {gameDetails.seller}
+        </p>
+        <p className={styles.availability}>
+          <strong>Available:</strong> {gameDetails.available ? "Yes" : "No"}
+        </p>
+        <button className={styles.buyButton}>Buy!</button>
+      </div>
+      
       ) : (
         <p>Loading game details...</p>
       )}
 
       {/* Steam Games Section */}
       <div className={styles.steamGamesContainer}>
-        <h2 className={styles.sectionTitle}>Steam Games</h2>
+        <h2 className={styles.sectionTitle}>My Games</h2>
         {ownedGames.length > 0 ? (
           <ul className={styles.gamesList}>
             {ownedGames.map((game) => (

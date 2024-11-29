@@ -1,121 +1,340 @@
 /* Main container */
 .idDetailsContainer {
-  background-color: black;
+  background: linear-gradient(to bottom, #0c0c0c, #1e013a);
   color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px; /* Increased padding for spaciousness */
-  font-family: Arial, sans-serif;
+  padding: 40px;
+  font-family: "Arial", sans-serif;
+  box-sizing: border-box;
 }
 
 /* Header navigation */
 .header {
   width: 100%;
   background: #1e013a;
-  padding: 15px 30px; /* Increased padding for a larger header */
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .navTitle {
   color: #ff00ff;
-  font-size: 2rem; /* Increased font size */
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
+  text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
+  letter-spacing: 2px;
+}
+
+/* Loading placeholder text */
+.loadingText {
+  font-size: 1.8rem;
+  color: #d1d1e0;
+  margin-top: 20px;
+  text-align: center;
+  animation: fadePulse 2s infinite;
+}
+
+/* Fade pulse animation for loading text */
+@keyframes fadePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Details card */
+/* Details card */
 .detailsCard {
-  background: linear-gradient(to bottom, #1e013a, #000000);
-  border-radius: 15px; /* Larger corner radius */
-  padding: 30px; /* Increased padding for content */
-  width: 90%; /* Increased width for larger layout */
-  max-width: 900px; /* Adjusted max width for responsiveness */
-  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; /* Enhanced shadow */
+  background: linear-gradient(135deg, #1e013a, #2c003d);
+  border-radius: 20px;
+  padding: 40px;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
   margin: 30px 0;
   text-align: center;
   box-sizing: border-box;
+  animation: glowPulse 3s infinite alternate;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
 }
 
-.gameName {
-  font-size: 2.5rem; /* Larger game name font size */
-  color: #ff00ff;
-  margin-bottom: 20px; /* Increased spacing below */
+/* Hover state with RGB effect */
+.detailsCard:hover {
+  border-image-slice: 1; /* Ensures full border coverage */
+  transform: scale(1.02); /* Slight zoom effect */
+  transition: all 0.4s ease-in-out; /* Smoother hover effect */
 }
 
-.description {
-  font-size: 1.5rem; /* Larger description font size */
-  margin-bottom: 20px; /* Increased margin for better spacing */
-  color: #cccccc;
-  line-height: 1.8; /* Improved readability */
+/* Radial gradient animation */
+@keyframes radialPulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+/* Glowing Pulse Animation */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+  }
+  100% {
+    box-shadow: 0 0 40px #e600e6, 0 0 80px #e600e6;
+  }
 }
 
-.sellBy {
-  font-size: 1.8rem; /* Larger sell-by font size */
-  margin-bottom: 20px;
+/* Glow effect for the card */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+  }
+  100% {
+    box-shadow: 0 0 40px #e600e6, 0 0 80px #e600e6;
+  }
 }
 
-.price {
-  font-size: 2rem; /* Larger price font size */
+/* Title (game name) */
+.detailsCard .gameName {
+  font-size: 4rem;
+  text-transform: uppercase;
   font-weight: bold;
-  color: #e6e600;
-  margin-bottom: 30px; /* Added spacing below */
+  margin-bottom: 20px;
+  color: #ff005d; /* Neon pink */
+  text-shadow: 0 0 15px #ff005d, 0 0 25px #ff005d, 0 0 35px #ff005d;
+  letter-spacing: 3px;
+  animation: titleGlow 3s infinite alternate;
 }
 
-.buyButton {
-  background-color: #ff00ff;
+/* Title glow animation */
+@keyframes titleGlow {
+  0% {
+    color: #ff00ff;
+    text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+  }
+  50% {
+    color: #ff7eff;
+    text-shadow: 0 0 30px #e600e6, 0 0 40px #e600e6, 0 0 50px #e600e6;
+  }
+  100% {
+    color: #ff00ff;
+    text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+  }
+}
+
+/* Price section */
+.detailsCard .price {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffff00;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #ffff00, 0 0 25px #ffff00;
+}
+
+/* Description and availability */
+.detailsCard .description,
+.detailsCard .availability {
+  font-size: 1.8rem;
+  color: #d1d1e0;
+  margin: 10px 0;
+}
+
+/* Bolded labels for seller and username */
+.detailsCard .description strong,
+.detailsCard .availability strong {
+  color: #ffffff;
+}
+
+/* Buy button */
+.detailsCard .buyButton {
+  background: linear-gradient(to right, #ff00ff, #e600e6);
   color: white;
   border: none;
-  padding: 15px 30px; /* Larger padding for a bigger button */
-  font-size: 1.5rem; /* Increased font size */
+  padding: 20px 50px;
+  font-size: 2rem;
   font-weight: bold;
-  border-radius: 10px; /* Larger corner radius */
+  border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; /* Enhanced shadow */
-  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.buyButton:hover {
-  transform: scale(1.1); /* Larger hover effect */
-  background-color: #e600e6;
+.detailsCard .buyButton:hover {
+  transform: scale(1.1);
+  background: linear-gradient(to right, #e600e6, #cc00cc);
+  box-shadow: 0 0 40px #e600e6, 0 0 80px #e600e6;
 }
 
-/* Game list */
-.gameList {
-  background: linear-gradient(to bottom, #1e013a, #000000);
-  border-radius: 15px; /* Larger corner radius */
-  padding: 30px; /* Increased padding for content */
-  width: 90%; /* Increased width for larger layout */
-  max-width: 900px; /* Adjusted max width */
-  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; /* Enhanced shadow */
-  margin: 30px 0;
+/* Decorative elements */
+.detailsCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.1), transparent 70%);
+  animation: radialGlow 6s infinite alternate;
+  transform: rotate(45deg);
 }
 
-.gameListTitle {
-  font-size: 2rem; /* Increased font size for the title */
+@keyframes radialGlow {
+  0% {
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.2), transparent 70%);
+  }
+  100% {
+    background: radial-gradient(circle, rgba(230, 0, 230, 0.1), transparent 70%);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+  }
+  100% {
+    box-shadow: 0 0 30px #e600e6, 0 0 50px #e600e6;
+  }
+}
+
+.detailsCard .gameName {
+  font-size: 3.5rem;
   color: #ff00ff;
   margin-bottom: 20px;
+  text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.detailsCard .price {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #ffff00;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+}
+
+.detailsCard .description {
+  font-size: 1.5rem;
+  color: #d1d1e0;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.detailsCard .availability {
+  font-size: 1.6rem;
+  color: #d1d1e0;
+  margin-bottom: 30px;
+}
+
+.detailsCard .buyButton {
+  transform: scale(1.01); /* Slight zoom on hover */
+  background: linear-gradient(to right, #ff00ff, #e600e6);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 25px #ff00ff, 0 0 45px #ff00ff;
+  transition: all 0.4s ease-in-out;
+}
+
+.detailsCard .buyButton:hover {
+  transform: scale(1.15);
+  background: linear-gradient(to right, #e600e6, #cc00cc);
+  box-shadow: 0 0 30px #e600e6, 0 0 60px #e600e6;
+}
+
+/* Steam Games section */
+.steamGamesContainer {
+  width: 100%;
+  margin-top: 40px;
   text-align: center;
 }
 
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.sectionTitle {
+  font-size: 3.5rem;
+  color: #ff00ff;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff, 0 0 45px #ff00ff;
+  animation: rgbGlow 3s infinite, textPulse 2s infinite;
+  letter-spacing: 4px;
 }
 
-.listItem {
-  margin: 10px 0; /* Increased spacing between list items */
-  font-size: 1.5rem; /* Larger font size for list items */
-  color: #cccccc;
+@keyframes rgbGlow {
+  0% {
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 45px #ff0000;
+    color: #ff0000;
+  }
+  25% {
+    text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00, 0 0 45px #00ff00;
+    color: #00ff00;
+  }
+  50% {
+    text-shadow: 0 0 15px #0000ff, 0 0 30px #0000ff, 0 0 45px #0000ff;
+    color: #0000ff;
+  }
+  75% {
+    text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff, 0 0 45px #ff00ff;
+    color: #ff00ff;
+  }
+  100% {
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 45px #ff0000;
+    color: #ff0000;
+  }
+}
+
+.gamesList {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-.appId {
-  color: #e6e600; /* Neon yellow */
+.gamesList .gameItem {
+  background: #1e013a;
+  border-radius: 10px;
+  padding: 15px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gamesList .gameItem:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px #e600e6, 0 0 40px #e600e6;
+}
+
+.gamesList .gameImage {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.gamesList .gameName {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #ff00ff;
+  text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
+  margin-bottom: 5px;
+}
+
+.gamesList .gamePlaytime {
+  font-size: 1.2rem;
+  color: #d1d1e0;
 }
