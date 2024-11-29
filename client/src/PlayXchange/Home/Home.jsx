@@ -10,7 +10,7 @@ const Home = () => {
 
 
   useEffect(() => {
-    navigate("/game-list") // Tell Perth to delete this line on production !FIX!
+    //navigate("/game-list") // First Page Skip [Dev]
     // Start the 1-second buffer only after the iframe is loaded
     if (iframeLoaded) {
       const timer = setTimeout(() => {
