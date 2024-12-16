@@ -70,3 +70,5 @@ npm start
 ## Contributing
 
 We welcome contributions! Feel free to open issues, suggest features, or submit pull requests.
+
+![Homepage](Screenshot%202567-12-16%20at%2009.15.02.png)
